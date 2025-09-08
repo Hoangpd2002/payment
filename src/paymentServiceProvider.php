@@ -2,12 +2,12 @@
 
 namespace hoangpd\payment;
 
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\PngWriter;
 use hoangpd\payment\Commands\paymentCommand;
 use Hoangpd\Payment\Services\VietQrGenerator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Writer\PngWriter;
 
 class paymentServiceProvider extends PackageServiceProvider
 {
