@@ -1,14 +1,14 @@
 <?php
 
-namespace payment_package\PaymentPackage;
+namespace hoangpd\payment;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
-use payment_package\PaymentPackage\Support\Crc16;
-use payment_package\PaymentPackage\Support\Tlv;
+use hoangpd\payment\Support\Crc16;
+use hoangpd\payment\Support\Tlv;
 
-class PaymentPackage
+class VietQrGenerator
 {
     protected array $config;
 

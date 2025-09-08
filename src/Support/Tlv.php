@@ -1,6 +1,6 @@
 <?php
 
-namespace payment_package\PaymentPackage\Support;
+namespace hoangpd\payment\Support;
 
 class Tlv
 {
