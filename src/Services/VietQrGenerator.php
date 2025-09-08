@@ -3,7 +3,6 @@
 namespace hoangpd\payment\Services;
 
 use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use hoangpd\payment\Support\Crc16;
@@ -70,16 +69,14 @@ class VietQrGenerator
 
     public function png(string $payload, int $size = 300): string
     {
-        $builder = new Builder(new PngWriter());
-
-        $result = $builder
+        $result = Builder::create()
             ->data($payload)
             ->encoding(new Encoding('UTF-8'))
-            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh)
             ->size($size)
             ->margin(10)
             ->build();
 
-        return $result->getString(); // trả về binary PNG
-}
+        return $result->getString(); // binary PNG
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace hoangpd\payment;
 
+use hoangpd\payment\Services\VietQrGenerator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
