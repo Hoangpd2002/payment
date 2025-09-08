@@ -25,7 +25,7 @@ class paymentServiceProvider extends PackageServiceProvider
     {
         // Đăng ký singleton service
         $this->app->singleton(VietQrGenerator::class, function ($app) {
-            return new VietQrGenerator();
+            return new VietQrGenerator;
         });
 
         // Alias để dùng kiểu: app('vietqr')
