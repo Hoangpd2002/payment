@@ -2,7 +2,7 @@
 
 namespace hoangpd\payment;
 
-use Hoangpd\Payment\Services\VietQrGenerator;
+use payment_package\PaymentPackage\PaymentPackage;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -24,11 +24,11 @@ class paymentServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         // Đăng ký singleton service
-        $this->app->singleton(VietQrGenerator::class, function ($app) {
-            return new VietQrGenerator();
+        $this->app->singleton(PaymentPackage::class, function ($app) {
+            return new PaymentPackage();
         });
 
         // Alias để dùng kiểu: app('vietqr')
-        $this->app->alias(VietQrGenerator::class, 'vietqr');
+        $this->app->alias(PaymentPackage::class, 'vietqr');
     }
 }
