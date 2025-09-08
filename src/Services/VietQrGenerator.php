@@ -5,6 +5,7 @@ namespace hoangpd\payment\Services;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\Writer\PngWriter;
 use hoangpd\payment\Support\Crc16;
 use hoangpd\payment\Support\Tlv;
 
