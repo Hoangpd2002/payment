@@ -70,4 +70,9 @@ class VietQrGenerator
 
         return $id.$length.$value;
     }
+
+    public function test()
+    {
+        dd(1);
+    }
 }
