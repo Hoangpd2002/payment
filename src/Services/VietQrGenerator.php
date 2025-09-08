@@ -1,6 +1,6 @@
 <?php
 
-namespace hoangpd\payment;
+namespace hoangpd\payment\Services;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
