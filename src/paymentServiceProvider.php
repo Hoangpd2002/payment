@@ -3,9 +3,9 @@
 namespace hoangpd\payment;
 
 use hoangpd\payment\Commands\paymentCommand;
+use Hoangpd\Payment\Services\VietQrGenerator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Hoangpd\Payment\Services\VietQrGenerator;
 
 class paymentServiceProvider extends PackageServiceProvider
 {
