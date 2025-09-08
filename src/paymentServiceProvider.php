@@ -2,9 +2,9 @@
 
 namespace hoangpd\payment;
 
+use hoangpd\payment\Commands\paymentCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use hoangpd\payment\Commands\paymentCommand;
 
 class paymentServiceProvider extends PackageServiceProvider
 {

@@ -2,9 +2,9 @@
 
 namespace hoangpd\payment\Tests;
 
+use hoangpd\payment\paymentServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use hoangpd\payment\paymentServiceProvider;
 
 class TestCase extends Orchestra
 {
