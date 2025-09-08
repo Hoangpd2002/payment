@@ -5,9 +5,29 @@ namespace hoangpd\payment;
 use hoangpd\payment\Commands\paymentCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Hoangpd\Payment\Services\VietQrGenerator;
 
 class paymentServiceProvider extends PackageServiceProvider
 {
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        // Đăng ký service VietQR
+        $this->app->singleton(VietQrGenerator::class);
+        $this->app->alias(VietQrGenerator::class, 'vietqr');
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        // Nếu có route, config, migration thì load ở đây
+        // $this->loadRoutesFrom(__DIR__.'/../routes/vietqr.php');
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
