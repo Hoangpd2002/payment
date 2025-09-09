@@ -11,11 +11,11 @@ class paymentServiceProvider extends PackageServiceProvider
     public function boot()
     {
         // Load view mặc định từ package
-        $this->loadViewsFrom(__DIR__.'/views', 'vietqr');
+        $this->loadViewsFrom(__DIR__.'/views', 'payment');
 
         // Cho phép publish view ra project
         $this->publishes([
-            __DIR__.'/views' => resource_path('views/vendor/vietqr'),
+            __DIR__.'/views' => resource_path('views/vendor/payment'),
         ], 'views');
     }
 
