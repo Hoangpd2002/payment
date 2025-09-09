@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin thanh toán</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
 <div class="container mt-4" style="max-width: 750px;">
     <!-- Header chứng từ -->
     <div class="row mb-3 border-bottom pb-2">
@@ -11,7 +20,7 @@
         </div>
         <div class="col">
             <small class="text-muted d-block">Phòng/Đơn vị</small>
-            <strong>{{ number_format($amount) }} VND<</strong>
+            <strong>{{ number_format($amount) }} VND</strong>
         </div>
         <div class="col">
             <small class="text-muted d-block">Phương thức thanh toán</small>
@@ -62,7 +71,11 @@
         </div>
 
         <div class="card-footer text-center text-muted small">
-            Vui lòng chuyển khoản đúng nội dung để hệ thống xác nhận tự động.
+            ⚠️ Vui lòng chuyển khoản đúng nội dung để hệ thống xác nhận tự động.
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
