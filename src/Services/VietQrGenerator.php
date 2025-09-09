@@ -2,81 +2,51 @@
 
 namespace hoangpd\payment\Services;
 
-use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
-use hoangpd\payment\Support\Crc16;
-use hoangpd\payment\Support\Tlv;
+use Illuminate\View\View;
 
 class VietQrGenerator
 {
-    protected array $config;
-
-    public function __construct(array $config = [])
+    /**
+     * Render URL payment following VietQR Quicklink format
+     *
+     * @param  mixed  $template
+     * @param  mixed  $amount
+     */
+    public function getUrlPayment(array $data): string
     {
-        $this->config = $config;
-    }
+        $base = rtrim(config('vietqr.quicklink_base'), '/');
+        $tpl = $data['template'] ?: config('vietqr.default_template', 'compact');
 
-    public function payload(
-        string $acqId,
-        string $accountNo,
-        ?int $amount = null,
-        string $note = '',
-        bool $isDynamic = false
-    ): string {
-        $root = [Tlv::pack('00', '01')]; // payload format
-        $root[] = Tlv::pack('01', $isDynamic ? '22' : '11');
+        $url = "{$base}/{$data['bankId']}-{$data['accountNo']}-{$tpl}.jpg";
 
-        // Merchant Account Info (38)
-        $mai = [
-            Tlv::pack('00', 'A000000727'),
-            Tlv::pack('01', $acqId),
-            Tlv::pack('02', $accountNo),
-            Tlv::pack('08', 'QRIBFTTA'),
-        ];
-        $root[] = Tlv::packList('38', $mai);
-
-        $root[] = Tlv::pack('53', '704'); // currency VNĐ
-
-        if (! is_null($amount)) {
-            $root[] = Tlv::pack('54', (string) $amount);
+        $params = [];
+        if (!empty($data['amount'])) {
+            $params['amount'] = $data['amount'];
+        }
+        if (!empty($data['addInfo'])) {
+            $params['addInfo'] = $data['addInfo'];
+        }
+        if (!empty($data['accountName'])) {
+            $params['accountName'] = $data['accountName'];
         }
 
-        $root[] = Tlv::pack('58', 'VN');
-
-        if ($note !== '') {
-            $root[] = Tlv::packList('62', [
-                Tlv::pack('08', mb_substr($note, 0, 25, 'UTF-8')),
-            ]);
+        if (! empty($params)) {
+            $url .= '?'.http_build_query($params);
         }
 
-        $withoutCrc = implode('', $root).'6304';
-        $crc = Crc16::of($withoutCrc);
-
-        return $withoutCrc.$crc;
+        return $url;
     }
 
-    public function payloadFromConfig(?int $amount = null, string $note = '', ?bool $isDynamic = null): string
+    /**
+     * Render QR code view
+     *
+     * @param  mixed  $template
+     * @param  mixed  $amount
+     */
+    public function renderQrCode(array $data): View
     {
-        $acqId = $this->config['acq_id'] ?? '';
-        $accountNo = $this->config['account_no'] ?? '';
-        $staticQr = $this->config['static_qr'] ?? true; // fallback mặc định true
+        $url = $this->getUrlPayment($data);
 
-        $isDyn = $isDynamic ?? ($staticQr === false);
-
-        return $this->payload($acqId, $accountNo, $amount, $note, $isDyn);
-    }
-
-    public function png(string $payload, int $size = 300): string
-    {
-        $result = Builder::create()
-            ->data($payload)
-            ->encoding(new Encoding('UTF-8'))
-            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh)
-            ->size($size)
-            ->margin(10)
-            ->build();
-
-        return $result->getDataUri(); // binary PNG
+        return view('payment::qr', compact('url', 'data'));
     }
 }

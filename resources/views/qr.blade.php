@@ -12,7 +12,7 @@
     <div class="row mb-3 border-bottom pb-2">
         <div class="col">
             <small class="text-muted d-block">Mã đơn hàng</small>
-            <strong>{{ $id }}</strong>
+            <strong>{{ $data['id'] }}</strong>
         </div>
         <div class="col">
             <small class="text-muted d-block">Ngày</small>
@@ -20,7 +20,7 @@
         </div>
         <div class="col">
             <small class="text-muted d-block">Phòng/Đơn vị</small>
-            <strong>{{ number_format($amount) }} VND</strong>
+            <strong>{{ number_format($data['amount']) }} VND</strong>
         </div>
         <div class="col">
             <small class="text-muted d-block">Phương thức thanh toán</small>
@@ -32,15 +32,7 @@
     <div class="card shadow-sm">
         <div class="card-header text-center bg-light">
             <h5 class="mb-1">Mã QR chuyển khoản ngân hàng</h5>
-            <img src="https://vietqr.net/Content/img/logo-vietqr.png" alt="VietQR" height="40">
-        </div>
-
-        <div class="card-body text-center">
-            <img src="{{ $qr }}" alt="VietQR" class="img-fluid border p-2 rounded" style="max-width: 250px;">
-            <div class="mt-2">
-                <img src="https://vietqr.net/Content/img/logo-napas.png" alt="napas" height="25" class="me-2">
-                <img src="https://img.vietqr.io/image/{{ strtolower($bank) }}-logo.png" alt="bank" height="25">
-            </div>
+            <img src="{{ $url }}" alt="VietQR" style="max-width: 300px;">
         </div>
 
         <div class="table-responsive">
@@ -60,11 +52,11 @@
                     </tr>
                     <tr>
                         <th>Số tiền</th>
-                        <td class="text-danger fw-bold">{{ number_format($amount) }} VND</td>
+                        <td class="text-danger fw-bold">{{ number_format($data['amount']) }} VND</td>
                     </tr>
                     <tr>
                         <th>Nội dung</th>
-                        <td>{{ $memo }}</td>
+                        <td>{{ $data['note'] }}</td>
                     </tr>
                 </tbody>
             </table>
