@@ -8,6 +8,17 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class paymentServiceProvider extends PackageServiceProvider
 {
+    public function boot()
+    {
+        // Load view mặc định từ package
+        $this->loadViewsFrom(__DIR__.'/views', 'vietqr');
+
+        // Cho phép publish view ra project
+        $this->publishes([
+            __DIR__.'/views' => resource_path('views/vendor/vietqr'),
+        ], 'views');
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
