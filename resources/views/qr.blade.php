@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <th>Nội dung</th>
-                        <td>{{ $data['note'] }}</td>
+                        <td>{{ $data['addInfo'] }}</td>
                     </tr>
                 </tbody>
             </table>
