@@ -40,15 +40,15 @@
                 <tbody>
                     <tr>
                         <th>Ngân hàng</th>
-                        <td>{{ $bank }}</td>
+                        <td>{{ $data['bankName'] }}</td>
                     </tr>
                     <tr>
                         <th>Số tài khoản</th>
-                        <td>{{ $account }}</td>
+                        <td>{{ $data['accountNo'] }}</td>
                     </tr>
                     <tr>
                         <th>Chủ tài khoản</th>
-                        <td>{{ $name }}</td>
+                        <td>{{ $data['accountName'] }}</td>
                     </tr>
                     <tr>
                         <th>Số tiền</th>
