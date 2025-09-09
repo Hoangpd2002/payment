@@ -77,6 +77,6 @@ class VietQrGenerator
             ->margin(10)
             ->build();
 
-        return $result->getString(); // binary PNG
+        return $result->getDataUri(); // binary PNG
     }
 }
