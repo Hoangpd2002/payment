@@ -20,13 +20,13 @@ class VietQrGenerator
         $url = "{$base}/{$data['bankId']}-{$data['accountNo']}-{$tpl}.jpg";
 
         $params = [];
-        if (!empty($data['amount'])) {
+        if (! empty($data['amount'])) {
             $params['amount'] = $data['amount'];
         }
-        if (!empty($data['addInfo'])) {
+        if (! empty($data['addInfo'])) {
             $params['addInfo'] = $data['addInfo'];
         }
-        if (!empty($data['accountName'])) {
+        if (! empty($data['accountName'])) {
             $params['accountName'] = $data['accountName'];
         }
 
